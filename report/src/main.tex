@@ -41,29 +41,7 @@ process involved.}
 
 \input{sections/solution-design}
 
-\section{Development, Experimentation and Profiling}\label{sec:development-experimentation-and-profiling}
-\subsection{Linting and Formatting - \inlinecode{ruff}}\label{subsec:linting-and-formatting}
-Why did I use ruff as opposed to black and flake8?
-Faster, combines both into one. Can mimic both. PEP8.
-
-\subsection{Git and Gitlab pipeline}\label{subsec:git-and-gitlab-pipeline}
-Why branches? Branch naming convention.
-Creating issues for tasks. Why? Project management. JIRA.
-New branch and merge per issue.
-Labels for issues because easy to and can folder the branches with those labels (show PyCharm example).
-
-\subsection{Test Driven Development}\label{subsec:test-driven-development}
-Explain why I wrote the tests first.
-
-\subsection{Profiling and Optimisation}\label{subsec:profiling-and-optimisation}
-Where did i test different packages for speed? Why did I choose numpy?
-Show how I profiled my code to identify where the bottleneck was.
-How did I work around this? Cython?
-
-\subsection{Coding Best Practises}\label{subsec:coding-best-practises}
-Modularisation.
-typing.
-Exceptions. Error handling, try except. Never catch all exceptions.
+\input{sections/development-experimentation-profiling}
 
 
 \section{Validation, Unit Tests and CI set up}\label{sec:validation-unit-tests-and-ci-set-up}
@@ -81,5 +59,15 @@ Why Docker?
 
 \section{Summary}
 \label{sec:conclusion}
+
+
+\begin{thebibliography}{99}
+
+\bibitem{ruff-repo}
+Astral,
+\textit{\inlinecode{ruff} GitHub Repository}.
+Available at: \url{https://github.com/astral-sh/ruff}
+[Accessed: 7-Dec-2023].
+\end{thebibliography}
 
 \end{document}

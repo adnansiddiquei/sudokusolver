@@ -1,0 +1,39 @@
+%! Author = adnansiddiquei
+%! Date = 07/12/2023
+
+\section{Development, Experimentation and Profiling}\label{sec:development-experimentation-and-profiling}
+Here we discuss several components of the development process, and reason why we chose to do things in certain ways
+
+\subsection{Linting and Formatting - \inlinecode{ruff}}\label{subsec:linting-and-formatting}
+    Linting and formatting is useful, especially in shared projects, as it allows for a consistent style across the codebase.
+    There are a plethora of python linting and formatting tools available and for this project, we chose to use \inlinecode{ruff}.
+    There were two primary reasons for this choice: speed and simplicity.
+    \inlinecode{ruff} is faster than most other linting tools including \inlinecode{flake8}.
+    In a test done by the developers of \inlinecode{ruff}, it managed to lint the CPython codebase 42x faster than
+    \inlinecode{flake8} \cite{ruff-repo}.
+    Whilst speed of linting is not a primary concern for this project, it doesn't hurt to pick the faster option.
+
+    Additionally, \inlinecode{ruff} provides formatting functionality and as such it can also replace tools such as
+    \inlinecode{black}.
+    This makes the implementation of linting and formatting simpler, as we only need to use one tool.
+    \inlinecode{ruff}'s configuration capabilities allow it to lint and format to any standard we want to, and as such,
+    it was configured to mimic \inlinecode{black} and \inlinecode{flake8}'s default config in accordance with PEP8.
+
+    \subsection{Git and Gitlab pipeline}\label{subsec:git-and-gitlab-pipeline}
+    Why branches? Branch naming convention.
+    Creating issues for tasks. Why? Project management. JIRA.
+    New branch and merge per issue.
+    Labels for issues because easy to and can folder the branches with those labels (show PyCharm example).
+
+    \subsection{Test Driven Development}\label{subsec:test-driven-development}
+    Explain why I wrote the tests first.
+
+    \subsection{Profiling and Optimisation}\label{subsec:profiling-and-optimisation}
+    Where did i test different packages for speed? Why did I choose numpy?
+    Show how I profiled my code to identify where the bottleneck was.
+    How did I work around this? Cython?
+
+    \subsection{Coding Best Practises}\label{subsec:coding-best-practises}
+    Modularisation.
+    typing.
+    Exceptions. Error handling, try except. Never catch all exceptions.
