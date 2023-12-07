@@ -7,3 +7,4 @@ dependencies:
   - numpy
   - ruff
   - sphinx
+  - pre-commit
