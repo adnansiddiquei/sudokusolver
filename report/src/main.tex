@@ -1,0 +1,92 @@
+%! Author = adnansiddiquei
+%! Date = 07/12/2023
+
+% Preamble
+\documentclass[a4paper,11pt]{article}
+\pdfoutput=1
+
+% Packages
+\usepackage{jcappub}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{roboto}
+
+\newcommand{\inlinecode}[1]{\lstinline{#1}}
+\lstset{basicstyle=\fontfamily{pcr}\selectfont}
+
+
+\title{\boldmath An implementation of a python sudoku solver package and a complete review of the software development
+process involved.}
+
+
+% %simple case: 2 authors, same institution
+ \author{Adnan Siddiquei}
+ \affiliation{University of Cambridge}
+
+% e-mail addresses: one for each author, in the same order as the authors
+\emailAdd{as3438@cam.ac.uk}
+
+
+
+
+%\abstract{Abstract...}
+
+
+
+\begin{document}
+\maketitle
+\flushbottom
+
+\section{Introduction}\label{sec:intro}
+
+\section{Selection of solution algorithm and prototyping}\label{sec:selection-of-solution-algorithm-and-prototyping}
+
+\subsection{Solution algorithm}\label{subsec:solution-algorithm}
+Why did I choose backtracking?
+
+\subsection{Prototyping}\label{subsec:prototyping}
+Put prototyping screenshots.
+Show plans of tests. Why did I choose those tests?
+
+\section{Development, Experimentation and Profiling}\label{sec:development-experimentation-and-profiling}
+\subsection{Linting and Formatting - \inlinecode{ruff}}\label{subsec:linting-and-formatting}
+Why did I use ruff as opposed to black and flake8?
+Faster, combines both into one. Can mimic both. PEP8.
+
+\subsection{Git and Gitlab pipeline}\label{subsec:git-and-gitlab-pipeline}
+Why branches? Branch naming convention.
+Creating issues for tasks. Why? Project management. JIRA.
+New branch and merge per issue.
+Labels for issues because easy to and can folder the branches with those labels (show PyCharm example).
+
+\subsection{Test Driven Development}\label{subsec:test-driven-development}
+Explain why I wrote the tests first.
+
+\subsection{Profiling and Optimisation}\label{subsec:profiling-and-optimisation}
+Where did i test different packages for speed? Why did I choose numpy?
+Show how I profiled my code to identify where the bottleneck was.
+How did I work around this? Cython?
+
+\subsection{Coding Best Practises}\label{subsec:coding-best-practises}
+Modularisation.
+typing.
+Exceptions. Error handling, try except. Never catch all exceptions.
+
+
+\section{Validation, Unit Tests and CI set up}\label{sec:validation-unit-tests-and-ci-set-up}
+Talk through why my unit tests are sufficient.
+How did I put this into the CI? With pre-commit.yaml
+
+
+\section{Documentation, Packaging and Usability}\label{sec:documentation-packaging-and-usability}
+\subsection{Documentation - \inlinecode{sphinx}}\label{subsec:documentation-sphinx}
+Why did I use sphinx over Doxygen? Sphinx is more popular, more support, more documentation, more features.
+
+\subsection{Packaging - Conda and Docker}\label{subsec:packaging-pypi}
+What benefits does conda have over pip? Why did I choose conda?
+Why Docker?
+
+\section{Summary}
+\label{sec:conclusion}
+
+\end{document}
