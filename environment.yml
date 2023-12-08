@@ -8,3 +8,4 @@ dependencies:
   - ruff
   - sphinx
   - pre-commit
+  - pytest
