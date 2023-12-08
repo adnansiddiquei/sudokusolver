@@ -74,6 +74,20 @@ def test_incorrect_board_shape():
         BacktrackingSolver().solve(np.array([[0, 1]]))
 
 
+def test_incorrect_board_type():
+    """
+    BacktrackingSolver should raise a ValueError if the board is not a numpy array or a list.
+    """
+    with pytest.raises(ValueError):
+        BacktrackingSolver().solve(5.34)
+
+    with pytest.raises(ValueError):
+        BacktrackingSolver().solve('This is a string')
+
+    with pytest.raises(ValueError):
+        BacktrackingSolver().solve(143)
+
+
 def test_invalid_board():
     """
     Tests that the BacktrackingSolver.is_valid == False and BacktrackingSolver.is_solvable == False when the
