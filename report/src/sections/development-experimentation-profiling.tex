@@ -19,11 +19,32 @@ Here we discuss several components of the development process, and reason why we
     \inlinecode{ruff}'s configuration capabilities allow it to lint and format to any standard we want to, and as such,
     it was configured to mimic \inlinecode{black} and \inlinecode{flake8}'s default config in accordance with PEP8.
 
-    \subsection{Git and Gitlab pipeline}\label{subsec:git-and-gitlab-pipeline}
-    Why branches? Branch naming convention.
-    Creating issues for tasks. Why? Project management. JIRA.
-    New branch and merge per issue.
-    Labels for issues because easy to and can folder the branches with those labels (show PyCharm example).
+    \subsection{Git and Gitlab Workflows}\label{subsec:git-and-gitlab-pipeline}
+    It is generally good practise to write detailed commit messages and merge requests, and traditionally in larger
+    software projects, project management tools such as JIRA are used to track issues and tasks, and merge requests
+    are linked to these issues.
+    In the world of open source, and small projects like this, GitLab's issue tracker works as a perfect tool for this.
+    Therefore, we utilised the issue tracker to create issues for tasks that needed to be done, and then linked merge requests
+    to these issues.
+    In this way, we could maintain detailed documentation in the issue tracker of what was done, and why it was done,
+    in a slightly more structured way than just using commit messages.
+    Therefore, a new branch was created for every issue, and once the branch implemented or resolved the features in the
+    issue, a merge request was created, linked to the issue, merged into main, and the issue was closed.
+    As such, anyone with access to the repo can see the git commit history through the GitLab UI and any references to issue
+    numbers in commits can be clicked to link the user to the underlying issue which describes what was implemented and why.
+
+    Furthermore, a nice feature of many project management tools and IDE's is the ability to group branches into folders
+    based on the branch name.
+    Git allows forward slashes '/' in branch names such that branches can be structured into folders by the IDE, as such
+    a naming convention was adopted for branches.
+    Branches were named like the following: \inlinecode{feat/issue-1} or \inlinecode{tests/issue-4} where the 3 main
+    'folders' used were \inlinecode{feat} for feature, \inlinecode{tests} and \inlinecode{bug}, followed by
+    the issue number it implemented.
+    Occasionally a \inlinecode{report} branch was created when only the report needed to be updated, these were not linked
+    to any issues.
+
+    Overally, these Git and GitLab workflows allowed for a structured development process, and a detailed history of
+    what was done and why it was done, which is useful for future reference.
 
     \subsection{Test Driven Development}\label{subsec:test-driven-development}
     Explain why I wrote the tests first.
