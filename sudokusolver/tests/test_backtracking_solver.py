@@ -98,10 +98,9 @@ def test_invalid_board():
         - The board contains duplicate values in a 3x3 square
     """
     # The board contains values other than 0-9
-    backtracking_solver = BacktrackingSolver()
     bad_board = unsolved_board.copy()
     bad_board[6, 4] = 10
-    BacktrackingSolver().solve(bad_board)
+    backtracking_solver = BacktrackingSolver().solve(bad_board)
 
     assert (
         backtracking_solver.is_valid is False
@@ -110,11 +109,10 @@ def test_invalid_board():
     )
 
     # The board contains duplicate values in a row
-    backtracking_solver = BacktrackingSolver()
     bad_board = unsolved_board.copy()
     bad_board[1, 1] = 4
     bad_board[1, 7] = 4
-    BacktrackingSolver().solve(bad_board)
+    backtracking_solver = BacktrackingSolver().solve(bad_board)
 
     assert (
         backtracking_solver.is_valid is False
@@ -123,11 +121,10 @@ def test_invalid_board():
     )
 
     # The board contains duplicate values in a column
-    backtracking_solver = BacktrackingSolver()
     bad_board = unsolved_board.copy()
     bad_board[1, 6] = 8
     bad_board[7, 6] = 8
-    BacktrackingSolver().solve(bad_board)
+    backtracking_solver = BacktrackingSolver().solve(bad_board)
 
     assert (
         backtracking_solver.is_valid is False
@@ -136,11 +133,10 @@ def test_invalid_board():
     )
 
     # The board contains duplicate values in a 3x3 square
-    backtracking_solver = BacktrackingSolver()
     bad_board = unsolved_board.copy()
     bad_board[0, 0] = 3
     bad_board[1, 1] = 3
-    BacktrackingSolver().solve(bad_board)
+    backtracking_solver = BacktrackingSolver().solve(bad_board)
 
     assert (
         backtracking_solver.is_valid is False
