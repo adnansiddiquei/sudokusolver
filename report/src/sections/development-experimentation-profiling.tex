@@ -40,14 +40,25 @@ Here we discuss several components of the development process, and reason why we
     Branches were named like the following: \inlinecode{feat/issue-1} or \inlinecode{tests/issue-4} where the 3 main
     'folders' used were \inlinecode{feat} for feature, \inlinecode{tests} and \inlinecode{bug}, followed by
     the issue number it implemented.
+    In practise, the \inlinecode{bug} folder was not used as bugs as no bugs were discovered.
     Occasionally a \inlinecode{report} branch was created when only the report needed to be updated, these were not linked
     to any issues.
 
-    Overally, these Git and GitLab workflows allowed for a structured development process, and a detailed history of
+    Overall, these Git and GitLab workflows allowed for a structured development process, and a detailed history of
     what was done and why it was done, which is useful for future reference.
 
     \subsection{Test Driven Development}\label{subsec:test-driven-development}
-    Explain why I wrote the tests first.
+    Where possible, we strived to do test driven development by writing tests first.
+    This was made possible due to the careful prototyping and API design discussed in Section\eqref{sec:solution-design}.
+    The reason we decided to write tests first came from three primary reasons:
+    \begin{itemize}
+        \item it streamlined code writing, as we were already aware of what the code needed to do, and what the edge cases
+        were.
+        \item it defined clearly what the end product would be;
+        \item it reduced debugging time.
+        We could more quickly figure out what was going wrong if a bug arose;
+    \end{itemize}
+    The final tests that were written are discussed more in Section\eqref{sec:validation-unit-tests-and-ci-set-up}.
 
     \subsection{Profiling and Optimisation}\label{subsec:profiling-and-optimisation}
     Where did i test different packages for speed? Why did I choose numpy?
