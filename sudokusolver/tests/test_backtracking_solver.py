@@ -49,8 +49,8 @@ solved_board = np.array(
     ]
 )
 
-# This is fully solved version of unsolved_board and partially_solved_board
-# board acquired from http://sudopedia.enjoysudoku.com/Invalid_Test_Cases.html
+# This is an unsolvable, but completely valid board.
+# Board acquired from http://sudopedia.enjoysudoku.com/Invalid_Test_Cases.html
 unsolvable_valid_board = np.array(
     [
         [0, 0, 9, 0, 2, 8, 7, 0, 0],
@@ -90,9 +90,9 @@ def test_invalid_board():
     BacktrackingSolver().solve(bad_board)
 
     assert (
-        not backtracking_solver.is_valid
-        and not backtracking_solver.is_solvable
-        and not backtracking_solver.is_solved
+        backtracking_solver.is_valid is False
+        and backtracking_solver.is_solvable is False
+        and backtracking_solver.is_solved is False
     )
 
     # The board contains duplicate values in a row
@@ -103,9 +103,9 @@ def test_invalid_board():
     BacktrackingSolver().solve(bad_board)
 
     assert (
-        not backtracking_solver.is_valid
-        and not backtracking_solver.is_solvable
-        and not backtracking_solver.is_solved
+        backtracking_solver.is_valid is False
+        and backtracking_solver.is_solvable is False
+        and backtracking_solver.is_solved is False
     )
 
     # The board contains duplicate values in a column
@@ -116,9 +116,9 @@ def test_invalid_board():
     BacktrackingSolver().solve(bad_board)
 
     assert (
-        not backtracking_solver.is_valid
-        and not backtracking_solver.is_solvable
-        and not backtracking_solver.is_solved
+        backtracking_solver.is_valid is False
+        and backtracking_solver.is_solvable is False
+        and backtracking_solver.is_solved is False
     )
 
     # The board contains duplicate values in a 3x3 square
@@ -129,9 +129,9 @@ def test_invalid_board():
     BacktrackingSolver().solve(bad_board)
 
     assert (
-        not backtracking_solver.is_valid
-        and not backtracking_solver.is_solvable
-        and not backtracking_solver.is_solved
+        backtracking_solver.is_valid is False
+        and backtracking_solver.is_solvable is False
+        and backtracking_solver.is_solved is False
     )
 
 
@@ -143,9 +143,9 @@ def test_unsolvable_board():
     backtracking_solver = BacktrackingSolver().solve(unsolvable_valid_board)
 
     assert (
-        backtracking_solver.is_valid
-        and not backtracking_solver.is_solvable
-        and not backtracking_solver.is_solved
+        backtracking_solver.is_valid is True
+        and backtracking_solver.is_solvable is False
+        and backtracking_solver.is_solved is False
     )
 
 
@@ -162,9 +162,9 @@ def test_valid_board():
 
     # Check that these are correctly set
     assert (
-        backtracking_solver.is_valid
-        and backtracking_solver.is_solvable
-        and backtracking_solver.is_solved
+        backtracking_solver.is_valid is True
+        and backtracking_solver.is_solvable is True
+        and backtracking_solver.is_solved is True
     )
 
     # Check that the initial values are unchanged
