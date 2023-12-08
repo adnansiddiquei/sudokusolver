@@ -39,54 +39,54 @@ process involved.}
 
 \section{Introduction}\label{sec:intro}
 
-\section{Selection of solution algorithm and prototyping}\label{sec:selection-of-solution-algorithm-and-prototyping}
+\input{sections/solution-design}
 
-\subsection{Solution algorithm}\label{subsec:solution-algorithm}
-Why did I choose backtracking?
-
-\subsection{Prototyping}\label{subsec:prototyping}
-Put prototyping screenshots.
-Show plans of tests. Why did I choose those tests?
-
-\section{Development, Experimentation and Profiling}\label{sec:development-experimentation-and-profiling}
-\subsection{Linting and Formatting - \inlinecode{ruff}}\label{subsec:linting-and-formatting}
-Why did I use ruff as opposed to black and flake8?
-Faster, combines both into one. Can mimic both. PEP8.
-
-\subsection{Git and Gitlab pipeline}\label{subsec:git-and-gitlab-pipeline}
-Why branches? Branch naming convention.
-Creating issues for tasks. Why? Project management. JIRA.
-New branch and merge per issue.
-Labels for issues because easy to and can folder the branches with those labels (show PyCharm example).
-
-\subsection{Test Driven Development}\label{subsec:test-driven-development}
-Explain why I wrote the tests first.
-
-\subsection{Profiling and Optimisation}\label{subsec:profiling-and-optimisation}
-Where did i test different packages for speed? Why did I choose numpy?
-Show how I profiled my code to identify where the bottleneck was.
-How did I work around this? Cython?
-
-\subsection{Coding Best Practises}\label{subsec:coding-best-practises}
-Modularisation.
-typing.
-Exceptions. Error handling, try except. Never catch all exceptions.
+\input{sections/development-experimentation-profiling}
 
 
-\section{Validation, Unit Tests and CI set up}\label{sec:validation-unit-tests-and-ci-set-up}
+\section{Validation, Unit Tests and CI set up [TODO]}\label{sec:validation-unit-tests-and-ci-set-up}
 Talk through why my unit tests are sufficient.
 How did I put this into the CI? With pre-commit.yaml
 
+\input{sections/documentation-packaging-usability}
 
-\section{Documentation, Packaging and Usability}\label{sec:documentation-packaging-and-usability}
-\subsection{Documentation - \inlinecode{sphinx}}\label{subsec:documentation-sphinx}
-Why did I use sphinx over Doxygen? Sphinx is more popular, more support, more documentation, more features.
+\section{Summary [TODO]}\label{sec:summary}
 
-\subsection{Packaging - Conda and Docker}\label{subsec:packaging-pypi}
-What benefits does conda have over pip? Why did I choose conda?
-Why Docker?
 
-\section{Summary}
-\label{sec:conclusion}
+\begin{thebibliography}{99}
+
+\bibitem{ruff-repo}
+Astral,
+\textit{\inlinecode{ruff} GitHub Repository}.
+Available at: \url{https://github.com/astral-sh/ruff}
+[Accessed: 7-Dec-2023].
+
+\bibitem{scikit-repo}
+scikit-learn,
+\textit{\inlinecode{schikit-learn} GitHub Repository}.
+Available at: \url{https://github.com/scikit-learn/scikit-learn}
+[Accessed: 7-Dec-2023].
+
+\bibitem{pip-docs}
+The pip developers,
+\textit{pip docs}.
+Available at: \url{https://pip.pypa.io/en/stable/}
+[Accessed: 8-Dec-2023].
+
+\bibitem{black-docs}
+Lukasz Langa and contributors to Black,
+\textit{Black docs}.
+Available at: \url{https://black.readthedocs.io/en/stable/}
+[Accessed: 8-Dec-2023].
+
+\bibitem{python-devguide}
+Python Software Foundation,
+\textit{Python Developer's Guide}.
+Available at: \url{https://devguide.python.org/}
+[Accessed: 8-Dec-2023].
+
+\end{thebibliography}
+
+
 
 \end{document}

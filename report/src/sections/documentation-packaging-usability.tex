@@ -1,0 +1,34 @@
+%! Author = adnansiddiquei
+%! Date = 08/12/2023
+
+\section{Documentation, Packaging and Usability}\label{sec:documentation-packaging-and-usability}
+    \subsection{Documentation - \inlinecode{sphinx} and NumPy Style Docstrings}\label{subsec:documentation-sphinx}
+    Documentation is an important part of any software project, without it, the user would have no idea how to utilise
+    third-party packages.
+    Documentation comes in two forms: inline documentation (docstrings and comments) and usage documentation (user guides
+    and API references).
+    The former is written whilst developing the code, and the latter is generated from the former with documentation tools.
+
+    The discussion of which documentation tool to use is quite an opinionated one, there is no strict "one is better than
+    the other" in most cases.
+    The two most popular ones in python are \inlinecode{sphinx} and \inlinecode{doxygen}.
+    Whilst using either of these tools would have been sufficient, \inlinecode{sphinx} was chosen for this project
+    primarily because of the vast universe of themes and extensions available for it.
+    The reason for documentation is to help a user understand how to use the package, and as such, above all else
+    the documentation output should be easy to read and navigate.
+    \inlinecode{sphinx} has a number of themes available, and the one chosen for this project was \inlinecode{furo} which
+    is used by \inlinecode{pip} \cite{pip-docs}\, \inlinecode{black} \cite{black-docs} and the python developer's guide
+    \cite{python-devguide}.
+    Whilst the setup for \inlinecode{sphinx} was a bit more hands on, it resulted in much more usable and aesthetic docs.
+
+    Another motivator for using \inlinecode{sphinx} was the ability to use NumPy style docstrings.
+    More so than the desire to use NumPy style docstrings, was the desire to not use Epytext style or reStructuredText style
+    docstrings, which is what Doxygen requires.
+    We found these styles to be much less readable than NumPy style docstrings, which was another motivator for using
+    \inlinecode{sphinx}.
+    Another popular alternative is Google style doctrings, NumPy style was chosen only by personal preference, \inlinecode{sphinx}
+    can handle both.
+
+    \subsection{Packaging - Conda and Docker [TODO]}\label{subsec:packaging-pypi}
+    What benefits does conda have over pip? Why did I choose conda?
+    Why Docker?
