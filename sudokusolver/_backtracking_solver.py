@@ -168,6 +168,11 @@ class BacktrackingSolver:
             A 9x9 numpy array or list representing the unsolved sudoku board. The board must only contain values between
             0-9, where 0 represents an empty cell.
 
+        Raises
+        ------
+        ValueError
+            If the provided board is not a numpy array or list, or if the provided board is not the correct 9x9 shape.
+
         Returns
         -------
         BacktrackingSolver
@@ -180,13 +185,15 @@ class BacktrackingSolver:
         if not isinstance(unsolved_board, np.ndarray) and not isinstance(
             unsolved_board, list
         ):
-            raise ValueError('Provided board must be a numpy array, or a list.')
+            raise ValueError(
+                '(sudokusolver) Provided board must be a numpy array, or a list.'
+            )
 
         self.unsolved_board = np.array(unsolved_board)
 
         # Raise an error if the provided board is not the correct shape
         if not self.unsolved_board.shape == (9, 9):
-            raise ValueError('Provided board must be 9x9.')
+            raise ValueError('(sudokusolver) Provided board must be 9x9.')
 
         # these are all th cells that our algorithm is allowed to edit
         self._editable_cells = self.unsolved_board == 0

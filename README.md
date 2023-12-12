@@ -3,7 +3,7 @@
 1. [Run `sudokusolver`](#run)
 2. [Documentation](#docs)
 3. [Report](#report)
-
+4. [Tests](#tests)
 
 ## <a name="run"></a> 1. Run `sudokusolver`
 Clone the repository and then run
@@ -57,3 +57,10 @@ And then open `docs/build/html/index.html` in your browser.
 
 ## <a name="report"></a> 3. Report
 The report is located at [report/out/main.pdf](report/out/main.pdf).
+
+## <a name="tests"></a> 4. Tests
+Run
+```bash
+pytest
+```
+in the root directory to run the tests.

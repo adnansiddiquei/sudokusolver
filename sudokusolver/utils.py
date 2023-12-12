@@ -19,6 +19,11 @@ def handler(cwd: str, argv: list, output_dir: str = None) -> None:
     output_dir
         The directory to save the output file to. If ``None``, then the output file will be saved to
         ``{cwd}/sudokusolver/outputs``.
+
+    Raises
+    ------
+    ValueError
+        If the incorrect number of command line arguments have been passed.
     """
     # Check that the correct number of arguments have been passed
     if len(argv) != 2:
@@ -96,6 +101,14 @@ def save_board_to_txt(board: NDArray[np.int8] | list, output_file: str) -> None:
         A 9x9 numpy array representing the sudoku board. 0's represent empty cells.
     output_file
         The path to the .txt file to save the sudoku board to.
+
+    Raises
+    ------
+    ValueError
+        If any of the following occur: the file extension of the output file is not .txt; the board is not a list or
+        numpy array; the board is not 9x9.
+    TypeError
+        If the board contains non-ints.
     """
     # Check that the file extension is .txt
     file_extension = output_file.split('.')[-1]
@@ -118,21 +131,21 @@ def save_board_to_txt(board: NDArray[np.int8] | list, output_file: str) -> None:
             board = np.array(board, dtype=np.int8)
         except ValueError:
             raise ValueError(
-                '(sudokusolver)  Provided board must be a 9x9 array of ints, containing no non-numerical characters. '
+                '(sudokusolver) Provided board must be a 9x9 array of ints, containing no non-numerical characters. '
                 'Please check the board is an array of ints, and try again.'
             )
     else:
         # Check that the board contains only ints
         if not np.issubdtype(board.dtype, np.integer):
             raise TypeError(
-                '(sudokusolver)  Provided board must be a 9x9 array of ints. Please check the board is an array of '
+                '(sudokusolver) Provided board must be a 9x9 array of ints. Please check the board is an array of '
                 'ints, and try again.'
             )
 
     # Check that the board is 9x9
     if board.shape != (9, 9):
         raise ValueError(
-            '(sudokusolver)  Provided board must be 9x9. Please check the board is 9x9, and try again.'
+            '(sudokusolver) Provided board must be 9x9. Please check the board is 9x9, and try again.'
         )
 
     # Convert the board to a string
@@ -168,25 +181,21 @@ def save_board_to_txt(board: NDArray[np.int8] | list, output_file: str) -> None:
 def parse_input_file(input_file: str) -> NDArray[np.int8]:
     """Parse a .txt file containing a sudoku board into a numpy array.
 
-    The provided board must be formatted like below:
-    ```
-    000|007|000
-    000|009|504
-    000|050|169
-    ---+---+---
-    080|000|305
-    075|000|290
-    406|000|080
-    ---+---+---
-    762|080|000
-    103|900|000
-    000|600|000
-    ```
+    See sudokusolver/inputs/input.txt for an example of the expected format.
 
     Parameters
     ----------
     input_file
         The path to the .txt file containing the sudoku board.
+
+    Raises
+    ------
+    ValueError
+        If any of the following occur: the file extension of the input file is not .txt; the file does not contain
+        exactly 9 rows of numbers; the file contains non-numerical characters; the file contains numbers outside the
+        range 0-9.
+    FileNotFoundError
+        If the input file does not exist.
 
     Returns
     -------
