@@ -46,6 +46,11 @@ def test_valid_filepath_and_valid_board():
         parse_input_file(f'{cwd}/sample_inputs/valid_input5.txt'), parsed_board
     )
 
+    # A board with an extra empty line
+    assert np.array_equal(
+        parse_input_file(f'{cwd}/sample_inputs/valid_input6.txt'), parsed_board
+    )
+
 
 def test_valid_filepath_and_invalid_board():
     with pytest.raises(ValueError):
@@ -62,6 +67,10 @@ def test_valid_filepath_and_invalid_board():
 
     with pytest.raises(ValueError):
         # this one is missing a vertical bar separator
+        parse_input_file(f'{cwd}/sample_inputs/invalid_input4.txt')
+
+    with pytest.raises(ValueError):
+        # this one has a letter instead of a number in it
         parse_input_file(f'{cwd}/sample_inputs/invalid_input4.txt')
 
     with pytest.raises(ValueError):
