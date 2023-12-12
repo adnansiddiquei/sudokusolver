@@ -3,6 +3,10 @@ import re
 from numpy.typing import NDArray
 
 
+def save_board_to_txt(board: NDArray[np.int8] | list, output_file: str) -> None:
+    pass
+
+
 def parse_input_file(input_file: str) -> NDArray[np.int8]:
     """Parse a .txt file containing a sudoku board into a numpy array.
 
