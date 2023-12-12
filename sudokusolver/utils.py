@@ -218,7 +218,7 @@ def parse_input_file(input_file: str) -> NDArray[np.int8]:
     # Check that the file contains 9 rows of numbers
     if np.sum([bool(re.match(num_line, line)) for line in lines]) != 9:
         raise ValueError(
-            '(sudokusolver)  Input file does not contain 9 rows of numbers. Please check the input file contains 9 rows '
+            '(sudokusolver) Input file does not contain 9 rows of numbers. Please check the input file contains 9 rows '
             'of numbers, and is formatted correctly.'
         )
 
