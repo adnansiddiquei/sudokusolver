@@ -7,7 +7,7 @@ Welcome to sudokusolver's documentation!
 ========================================
 **sudokusolver** is a Python library currently containing utilities to solve sudoku puzzles.
 
-It currently only implements ``BacktrackingSolver`` class to solve sudokus using a backtracking algorithm.
+It currently only implements a ``BacktrackingSolver`` class to solve sudokus using a backtracking algorithm.
 
 Contents
 ==================

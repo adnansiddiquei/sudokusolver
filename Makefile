@@ -10,6 +10,7 @@ run: build
 	docker run -it --name $(CONTAINER_NAME) \
 	-v "$(PWD)/sudokusolver/inputs":/usr/src/app/sudokusolver/inputs \
 	-v "$(PWD)/sudokusolver/outputs":/usr/src/app/sudokusolver/outputs \
+	-v "$(PWD)/docs/build":/usr/src/app/docs/build \
 	$(IMAGE_NAME) /bin/bash
 
 # Stop and remove the container

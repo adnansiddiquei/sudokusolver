@@ -9,3 +9,4 @@ dependencies:
   - sphinx
   - pre-commit
   - pytest
+  - furo
