@@ -5,7 +5,7 @@ target-version = "py312"
 [tool.ruff.lint]
 # Enable Pyflakes (`F`), a subset of the pycodestyle (`E`) codes, pycodestyle warnings (`W`)
 # and McCabe complexity (`C901`). This will mimic the default flake8 configuration for linting.
-select = ["E4", "E7", "E9", "F", "W", "C901"]
+select = ["E4", "E7", "E9", "F", "W"]
 
 [tool.ruff.extend-per-file-ignores]
 # Ignore unused-imports in __init__.py files.

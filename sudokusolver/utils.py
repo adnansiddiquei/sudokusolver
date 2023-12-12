@@ -4,7 +4,81 @@ from numpy.typing import NDArray
 
 
 def save_board_to_txt(board: NDArray[np.int8] | list, output_file: str) -> None:
-    pass
+    """Save a sudoku board to a .txt file.
+
+    Parameters
+    ----------
+    board
+        A 9x9 numpy array representing the sudoku board. 0's represent empty cells.
+    output_file
+        The path to the .txt file to save the sudoku board to.
+    """
+    # Check that the file extension is .txt
+    file_extension = output_file.split('.')[-1]
+
+    if file_extension != 'txt':
+        raise ValueError(
+            'Output file must be a .txt file. Please check the output file extension is .txt.'
+        )
+
+    # Check that the board is a list or numpy array
+    if not isinstance(board, list) and not isinstance(board, np.ndarray):
+        raise TypeError(
+            'Provided board must be a list or numpy array. Please check the board is a list or numpy array, '
+            'and try again.'
+        )
+
+    # Convert the board to a numpy array if it is a list
+    if isinstance(board, list):
+        try:
+            board = np.array(board, dtype=np.int8)
+        except ValueError:
+            raise ValueError(
+                'Provided board must be a 9x9 array of ints, containing no non-numerical characters. '
+                'Please check the board is an array of ints, and try again.'
+            )
+    else:
+        # Check that the board contains only ints
+        if board.dtype != int:
+            raise TypeError(
+                'Provided board must be a 9x9 array of ints. Please check the board is an array of ints, '
+                'and try again.'
+            )
+
+    # Check that the board is 9x9
+    if board.shape != (9, 9):
+        raise ValueError(
+            'Provided board must be 9x9. Please check the board is 9x9, and try again.'
+        )
+
+    # Convert the board to a string
+    def convert_num_line_to_str(line):
+        """Converts a list of ints into a string of numbers, with | separators after every 3 numbers."""
+        return ''.join(
+            [
+                f'{num}|' if (i + 1) % 3 == 0 and i != 8 else f'{num}'
+                for i, num in enumerate(line)
+            ]
+        )
+
+    rendered_lines = []
+
+    for i, line in enumerate(board):
+        rendered_lines += [convert_num_line_to_str(line)]
+
+        # Add a separator line after every 3 lines
+        if (i + 1) % 3 == 0 and i != 8:
+            rendered_lines += ['---+---+---']
+
+    rendered_lines = [f'{line}\n' for line in rendered_lines]
+
+    # Write the string to the output file, overwriting any existing file
+    try:
+        with open(output_file, 'w') as f:
+            f.writelines(rendered_lines)
+    except FileNotFoundError:
+        # The default error is good enough here
+        raise
 
 
 def parse_input_file(input_file: str) -> NDArray[np.int8]:
