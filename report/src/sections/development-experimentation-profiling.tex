@@ -2,7 +2,7 @@
 %! Date = 07/12/2023
 
 \section{Development, Experimentation and Profiling}\label{sec:development-experimentation-and-profiling}
-Here we discuss several components of the development process, and reason why we chose to do things in certain ways
+Here we discuss several components of the development process, and reason why we chose to do things in certain ways.
 
 \subsection{Linting and Formatting - \inlinecode{ruff}}\label{subsec:linting-and-formatting}
     Linting and formatting is useful, especially in shared projects, as it allows for a consistent style across the codebase.
@@ -11,18 +11,17 @@ Here we discuss several components of the development process, and reason why we
     \inlinecode{ruff} is faster than most other linting tools including \inlinecode{flake8}.
     In a test done by the developers of \inlinecode{ruff}, it managed to lint the CPython codebase 42x faster than
     \inlinecode{flake8} \cite{ruff-repo}.
-    Whilst speed of linting is not a primary concern for this project, it doesn't hurt to pick the faster option.
 
     Additionally, \inlinecode{ruff} provides formatting functionality and as such it can also replace tools such as
     \inlinecode{black}.
     This makes the implementation of linting and formatting simpler, as we only need to use one tool.
-    \inlinecode{ruff}'s configuration capabilities allow it to lint and format to any standard we want to, and as such,
+    \inlinecode{ruff}'s configuration capabilities allow it to lint and format to any standard we want to, and therefore,
     it was configured to mimic \inlinecode{black} and \inlinecode{flake8}'s default config in accordance with PEP8.
 
     \subsection{Git and Gitlab Workflows}\label{subsec:git-and-gitlab-pipeline}
     It is generally good practise to write detailed commit messages and merge requests, and traditionally in larger
-    software projects, project management tools such as JIRA are used to track issues and tasks, and merge requests
-    are linked to these issues.
+    software projects, project management tools such as JIRA are used to track issues and tasks, with merge requests
+    being linked to these issues.
     In the world of open source, and small projects like this, GitLab's issue tracker works as a perfect tool for this.
     Therefore, we utilised the issue tracker to create issues for tasks that needed to be done, and then linked merge requests
     to these issues.
@@ -35,14 +34,12 @@ Here we discuss several components of the development process, and reason why we
 
     Furthermore, a nice feature of many project management tools and IDE's is the ability to group branches into folders
     based on the branch name.
-    Git allows forward slashes '/' in branch names such that branches can be structured into folders by the IDE, as such
+    Git allows forward slashes '/' in branch names such that branches can be structured into folders by the IDE, and so
     a naming convention was adopted for branches.
     Branches were named like the following: \inlinecode{feat/issue-1} or \inlinecode{tests/issue-4} where the 3 main
     'folders' used were \inlinecode{feat} for feature, \inlinecode{tests} and \inlinecode{bug}, followed by
     the issue number it implemented.
-    In practise, the \inlinecode{bug} folder was not used as bugs as no bugs were discovered.
-    Occasionally a \inlinecode{report} branch was created when only the report needed to be updated, these were not linked
-    to any issues.
+    In practise, the \inlinecode{bug} folder was not used as no bugs were discovered.
 
     Overall, these Git and GitLab workflows allowed for a structured development process, and a detailed history of
     what was done and why it was done, which is useful for future reference.
@@ -60,7 +57,7 @@ Here we discuss several components of the development process, and reason why we
     \end{itemize}
     The final tests that were written are discussed more in Section\eqref{sec:validation-unit-tests-and-ci-set-up}.
 
-    \subsection{Profiling and Optimisation [TODO]}\label{subsec:profiling-and-optimisation}
+    \subsection{Profiling and Optimisation}\label{subsec:profiling-and-optimisation}
     \begin{figure}[htb]
     \centering
     \begin{subfigure}[b]{0.9\linewidth}
@@ -93,7 +90,11 @@ Here we discuss several components of the development process, and reason why we
     This was not done for this project but this section is included to illustrate the importance of profiling before
     optimisation.
 
-    \subsection{Coding Best Practises [TODO]}\label{subsec:coding-best-practises}
-    Modularisation.
-    typing.
-    Exceptions. Error handling, try except. Never catch all exceptions.
+    \subsection{Error handling}\label{subsec:coding-best-practises}
+    General python best practises were followed with regard to error handling.
+    Exceptions were raised when appropriate, and try except blocks were used to catch exceptions.
+    Occasionally, a try except block was used to catch and re-raise exceptions (with no modification) for clarity.
+    Likewise, try except blocks were used to catch potential errors, or invalid arguments to functions, and the in-built
+    python exceptions were used to raise these errors to the user.
+    The three most common exceptions that were raised were \inlinecode{ValueError}, \inlinecode{TypeError} and
+    \inlinecode{FileNotFoundError}.

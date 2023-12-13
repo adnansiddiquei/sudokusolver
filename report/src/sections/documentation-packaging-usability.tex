@@ -5,8 +5,8 @@
     \subsection{Documentation - \inlinecode{sphinx} and NumPy Style Docstrings}\label{subsec:documentation-sphinx}
     Documentation is an important part of any software project, without it, the user would have no idea how to utilise
     third-party packages.
-    Documentation comes in two forms: inline documentation (docstrings and comments) and usage documentation (user guides
-    and API references).
+    Documentation comes in two forms: inline documentation (docstrings, comments and type definitions) and usage
+    documentation (user guides and API references).
     The former is written whilst developing the code, and the latter is generated from the former with documentation tools.
 
     The discussion of which documentation tool to use is quite an opinionated one, there is no strict "one is better than
@@ -29,6 +29,24 @@
     Another popular alternative is Google style doctrings, NumPy style was chosen only by personal preference, \inlinecode{sphinx}
     can handle both.
 
-    \subsection{Packaging - Conda and Docker [TODO]}\label{subsec:packaging-pypi}
-    What benefits does conda have over pip? Why did I choose conda?
-    Why Docker?
+    \subsection{Packaging - conda, Docker and make}\label{subsec:packaging}
+    Packaging the code effectively is important for usability.
+    Docker allows us to containerise the code and run it on any machine and as such, we created a \inlinecode{Dockerfile}
+    for our project which would allow the user to run the code in a Docker container.
+
+    We also utilised \inlinecode{make} by creating a \inlinecode{Makefile} which would allow the user to easily build
+    and run the docker image.
+    The \inlinecode{Makefile} contained a \inlinecode{make run} target which would build the docker image, then run
+    the code in the container with the relevant directories mounted, and finally place the user in a shell in the container
+    so that they could interact with the code.
+    This way, the user does not need to worry about understanding which directories need to be mounted or any other
+    config with relation to getting the Docker container started.
+    If the user did care to know, they could simply look at the \inlinecode{Makefile} and see what the \inlinecode{run}
+    target does.
+
+    Conda was also utilised to create and manage environments for the code.
+    The base image for the Docker container was \inlinecode{continuumio/miniconda3}, which allowed us to easily create
+    and install all the dependencies for the Docker image using an \inlinecode{environment.yaml} file and conda.
+
+    Generally, the purposes of these tools were to make the code as easy as possible to run by any user, and
+    this goal was achieved through the use of these tools.

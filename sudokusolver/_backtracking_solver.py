@@ -201,9 +201,16 @@ class BacktrackingSolver:
         # This is the working board, this where we will make edits
         self.board = np.copy(self.unsolved_board)
 
+        is_board_valid = self._is_board_valid()
+
         # Raise an error if the provided board is not valid
-        if not self._is_board_valid():
+        if not is_board_valid:
             self.is_solved, self.is_solvable, self.is_valid = False, False, False
+            return self
+
+        # Catch the case where the board is already filled and correct
+        if self._is_board_filled() and is_board_valid:
+            self.is_solved = True
             return self
 
         # Find and set the co-ords of the first editable cell
