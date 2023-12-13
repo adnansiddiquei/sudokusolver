@@ -1,0 +1,34 @@
+%! Author = adnansiddiquei
+%! Date = 12/12/2023
+
+\section{Validation, Unit Tests and CI set up}\label{sec:validation-unit-tests-and-ci-set-up}
+    \subsection{Unit Tests}\label{subsec:validation}
+    Unit tests were implemented using \inlinecode{pytest}.
+    These were planned and written prior to writing any code, as discussed in Section\eqref{subsec:test-driven-development}.
+    All the functions described in the pseudocode in Fig.\eqref{fig:pseudocode} were tested, and generally speaking, the
+    tests covered the following cases:
+    \begin{itemize}
+        \item correct outputs when the inputs were correct;
+        \item expected behaviour and handling of exceptions when inputs were incorrect.
+        A function could take parameters that were incorrect in multiple ways (value, shape, length, type, etc.), and as such,
+        we tested for all of these cases, as well as different combinations of these cases.
+        \item correct handling of edge cases, where inputs were at their extremes (such as empty lists, input
+        sudoku already solved, etc.)
+        \item correct handling of slight variations on inputs that were allowed to be correct.
+        For example, in the case of the input file, we allowed slightly incorrectly formatted versions of the input file
+        to be parsed correctly.
+    \end{itemize}
+
+    Designing the tests using this framework, we were confident that the code was working as expected and that the testing
+    suite was comprehensive.
+
+    \subsection{Continuous Integration - \inlinecode{pre-commit}}\label{subsec:continuous-integration}
+    \inlinecode{pre-commit} was used to set up actions to run before every commit.
+    In our case, we used \inlinecode{pre-commit} to run the \inlinecode{ruff} linter and formatter before every commit.
+    This ensured that no incorrectly formatted code made it's way into main.
+    It is good to also run tests periodically, some projects run tests before every commit, and some run tests before
+    every PR into main by using a CI tool such as GitHub Actions.
+    However, in our case, we decided not to add the running of unit tests before every commit to
+    \inlinecode{pre-commit-config.yaml} as we were doing test driven development, and as such, on many commits
+    and PRs into main, the tests would, by design, not pass.
+    However, we ensured that the tests were run regularly and as the relevant code was being written.
