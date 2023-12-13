@@ -10,7 +10,7 @@ Clone the repository and then run
 ```bash
 make run
 ```
-in your terminal.
+in your terminal, within the root of this repo.
 
 This will
 1. Build the Docker image using the [Dockerfile](Dockerfile).
@@ -27,7 +27,8 @@ to activate the conda environment, and then
 ```bash
 python -m sudokusolver sudokusolver/inputs/input.txt
 ```
-to run the solver on the input file. This will output the result to `sudokusolver/outputs/output1.txt`.
+to run the solver on the input file. This will output the result to `sudokusolver/outputs/output1.txt`. This directory
+is mounted, so the output file will also be in the `outputs` directory on your local machine.
 
 To run the solver on different input files, add them to the `sudokusolver/inputs` directory and then run
 ```bash
@@ -60,8 +61,10 @@ run
 cd docs
 make html
 ```
-And then open `docs/build/html/index.html` in your browser. This folder on the container is mounted, so this should
-in the `docs/build` directory on your local machine.
+And then open `docs/build/html/index.html` in your browser.
+
+The `docs/build` folder on the container is mounted also mounted, so the docs will appear on your local machine so you
+can open them in your browser from there.
 
 ## <a name="tests"></a> 3. Tests
 Whilst in the root folder of the repository, in the container, run
