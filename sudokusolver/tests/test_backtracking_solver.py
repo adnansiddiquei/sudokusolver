@@ -194,3 +194,17 @@ def test_valid_board():
     assert ma.allequal(
         initial_values_in_partially_solved_board, initial_values_in_solved_board
     )
+
+
+def test_solved_board():
+    """Test that the solver correctly handles a solved board"""
+    backtracking_solver = BacktrackingSolver().solve(solved_board)
+
+    # Check that these are correctly set
+    assert (
+        backtracking_solver.is_valid is True
+        and backtracking_solver.is_solvable is True
+        and backtracking_solver.is_solved is True
+    )
+
+    assert np.array_equal(backtracking_solver.board, solved_board)
