@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * Checks if there are duplicate numbers in an of arbitrary length, ignoring zeros.
+ * Checks if there are duplicate numbers in an integer array of arbitrary length, ignoring zeros.
  *
  * @param array A pointer to the first element of the array to be checked.
  * @param length The number of elements in the array (should be 9 for a sudoku row, column or box).

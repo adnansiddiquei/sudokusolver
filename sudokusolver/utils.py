@@ -8,12 +8,16 @@ from ctypes import CDLL, c_int, POINTER
 cwd = os.path.dirname(os.path.abspath(__file__))
 cutils = CDLL(f'{cwd}/cutils.so')
 
+# Define the function signature for cutils.has_non_zero_duplicates so it can be accessed via python
 cutils.has_non_zero_duplicates.argtypes = [POINTER(c_int), c_int]
 cutils.has_non_zero_duplicates.restype = c_int
 
 
 def has_non_zero_duplicates(arr: NDArray[np.integer] | list) -> bool:
     """Check if a 1-dimensional array contains any non-zero duplicates.
+
+    This underlying implementation for this function is in C. See sudokusolver/cutils.c for the implementation.
+    This function adds error handling and type checking before the underlying c function is called.
 
     Parameters
     ----------
