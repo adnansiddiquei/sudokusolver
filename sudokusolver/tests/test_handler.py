@@ -1,6 +1,6 @@
 import pytest
 
-from ..utils import handler
+from .._handler import handler
 import os
 import shutil
 

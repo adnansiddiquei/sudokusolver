@@ -5,6 +5,10 @@ CONTAINER_NAME=sudokusolver_container
 build:
 	docker build -t $(IMAGE_NAME) .
 
+# Build the cutils library
+cutils:
+	gcc -shared -o "$(PWD)/sudokusolver/cutils.so" "$(PWD)/sudokusolver/cutils.c"
+
 # Run docker container with sudokusolver/inputs and sudokusolver/outputs mounted as volumes
 run: build
 	docker run -it --name $(CONTAINER_NAME) \
