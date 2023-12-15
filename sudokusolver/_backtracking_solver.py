@@ -3,7 +3,7 @@ Implementation of the BacktrackingSolver class, and any associated helper functi
 """
 
 import numpy as np
-import numpy.ma as ma
+from .utils import has_non_zero_duplicates
 
 from numpy.typing import NDArray
 
@@ -87,38 +87,31 @@ class BacktrackingSolver:
         """
         return self._editable_cells[r, c]
 
-    def _row_constraint_violated(self, r: int, c: int) -> bool:
-        row = ma.masked_array(self.board[r, :])
-        row[c] = ma.masked
-        row[np.where(row == 0)] = ma.masked
+    def _row_constraint_violated(self, r: int) -> bool:
+        row = self.board[r, :]
+        return has_non_zero_duplicates(row)
 
-        return self.board[r, c] in row
-
-    def _col_constraint_violated(self, r: int, c: int) -> bool:
-        col = ma.masked_array(self.board[:, c])
-        col[r] = ma.masked
-        col[np.where(col == 0)] = ma.masked
-
-        return self.board[r, c] in col
+    def _col_constraint_violated(self, c: int) -> bool:
+        col = self.board[:, c]
+        return has_non_zero_duplicates(col)
 
     def _box_constraint_violated(self, r: int, c: int) -> bool:
         r_range = np.floor(r / 3).astype(int)
         c_range = np.floor(c / 3).astype(int)
+        box = self.board[r_range * 3 : r_range * 3 + 3][
+            :, c_range * 3 : c_range * 3 + 3
+        ].flatten()
 
-        board = ma.masked_array(self.board)
-        board[r, c] = ma.masked
-        box = board[r_range * 3 : r_range * 3 + 3][:, c_range * 3 : c_range * 3 + 3]
-        box[np.where(box == 0)] = ma.masked
-
-        return self.board[r, c] in box
+        return has_non_zero_duplicates(box)
 
     def _range_violated(self, r: int, c: int) -> bool:
         return self.board[r, c] > 9
 
     def _sudoku_constraint_violated(self, r: int, c: int) -> bool:
+        # The first 3 functions below call the underlying c function from cutils.c
         return (
-            self._row_constraint_violated(r, c)
-            or self._col_constraint_violated(r, c)
+            self._row_constraint_violated(r)
+            or self._col_constraint_violated(c)
             or self._box_constraint_violated(r, c)
             or self._range_violated(r, c)
         )

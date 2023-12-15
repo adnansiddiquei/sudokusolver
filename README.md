@@ -12,12 +12,14 @@ make run
 ```
 in your terminal, within the root of this repo.
 
-This will
-1. Build the Docker image using the [Dockerfile](Dockerfile).
+This will do all of the following for you:
+1. Build the Docker image using the [Dockerfile](Dockerfile), which will
+   1. Create the conda env from `environment.yml`
+   2. Install `make` and `gcc` in the image and compile the `cutils.c` file.
 2. Run the Docker image, and mount `/sudokusolver/inputs`,  `/sudokusolver/outputs`, `/docs/build` as volumes on the
 container, mapped to the same directories on your local machine. The [input.txt](sudokusolver/inputs/input.txt) required for the coursework
 is already in the `inputs` directory.
-3. Open an interactive terminal in the Docker container.
+3. Open an interactive terminal in the running Docker container.
 
 Then run
 ```bash
@@ -61,17 +63,20 @@ run
 cd docs
 make html
 ```
-And then open `docs/build/html/index.html` in your browser.
+And then open `docs/build/html/index.html` in your browser. This directory is mounted in the container.
 
-The `docs/build` folder on the container is mounted also mounted, so the docs will appear on your local machine so you
-can open them in your browser from there.
+If you choose to do this outside of the container, you will need to ensure
+you run `make cutils` to ensure that the `cutils.c` is built, otherwise the docs will fail to generate.
 
 ## <a name="tests"></a> 3. Tests
-Whilst in the root folder of the repository, in the container, run
+Whilst in the root folder of the repository, and in the `as3438_c1cw` conda env, in the container, run
 ```bash
 pytest
 ```
 to run the tests.
+
+If you choose to do this outside of the container, you will need to ensure
+you run `make cutils` to ensure that the `cutils.c` is built, otherwise the tests will fail.
 
 ## <a name="report"></a> 4. Report
 The report is located at [report/out/main.pdf](report/out/main.pdf).
