@@ -91,11 +91,11 @@ def test_incorrect_board_type():
 def test_invalid_board():
     """
     Tests that the BacktrackingSolver.is_valid == False and BacktrackingSolver.is_solvable == False when the
-    board is not valid, and therefore unsolvable:
-        - The board contains values other than 0-9
-        - The board contains duplicate values in a row
-        - The board contains duplicate values in a column
-        - The board contains duplicate values in a 3x3 square
+    board is not valid, and therefore unsolvable: \n
+    - The board contains values other than 0-9 \n
+    - The board contains duplicate values in a row \n
+    - The board contains duplicate values in a column \n
+    - The board contains duplicate values in a 3x3 square \n
     """
     # The board contains values other than 0-9
     bad_board = unsolved_board.copy()

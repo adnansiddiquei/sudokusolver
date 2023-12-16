@@ -8,7 +8,7 @@ from ._backtracking_solver import BacktrackingSolver
 
 
 def handler(cwd: str, argv: list, output_dir: str = None) -> None:
-    """Handle the command line arguments passed to the script.
+    """Handle the execution of this package from the command line.
 
     Parameters
     ----------

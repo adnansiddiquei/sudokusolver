@@ -4,16 +4,19 @@ import pytest
 
 
 def test_no_duplicates():
+    """Test that False is returned when there are no duplicates in an array"""
     assert not has_non_zero_duplicates(np.array([1, 2, 3, 4, 5, 6, 7, 8, 9]))
     assert not has_non_zero_duplicates([9, 7, 8, 4, 3, 2, 6, 5, 1])
 
 
 def test_duplicates():
+    """Test that True is returned when there are duplicates in an array"""
     assert has_non_zero_duplicates(np.array([1, 2, 3, 8, 5, 6, 7, 8, 9]))
     assert has_non_zero_duplicates([9, 7, 8, 4, 3, 2, 2, 5, 1])
 
 
 def test_errors():
+    """Test that the correct errors are raised when invalid inputs are passed in"""
     # Should raise error if anything other than an array is passed in
     with pytest.raises(TypeError):
         has_non_zero_duplicates('test string')

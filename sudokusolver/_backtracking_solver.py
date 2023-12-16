@@ -59,9 +59,11 @@ class BacktrackingSolver:
         self._editable_cells = None
 
     def _is_board_filled(self) -> bool:
+        """Checks if the board is filled with non-zero numbers"""
         return np.sum(self.board > 0) == 81
 
     def _is_board_valid(self) -> bool:
+        """Checks if the board is valid, i.e., it satisfies the constraints of sudoku."""
         for r in range(9):
             for c in range(9):
                 if self._sudoku_constraint_violated(r, c):
@@ -88,14 +90,17 @@ class BacktrackingSolver:
         return self._editable_cells[r, c]
 
     def _row_constraint_violated(self, r: int) -> bool:
+        """Checks if the row constraint is violated at the given row index."""
         row = self.board[r, :]
         return has_non_zero_duplicates(row)
 
     def _col_constraint_violated(self, c: int) -> bool:
+        """Checks if the column constraint is violated at the given column index."""
         col = self.board[:, c]
         return has_non_zero_duplicates(col)
 
     def _box_constraint_violated(self, r: int, c: int) -> bool:
+        """Checks if the box constraint is violated at the given row and column index."""
         r_range = np.floor(r / 3).astype(int)
         c_range = np.floor(c / 3).astype(int)
         box = self.board[r_range * 3 : r_range * 3 + 3][
@@ -105,9 +110,11 @@ class BacktrackingSolver:
         return has_non_zero_duplicates(box)
 
     def _range_violated(self, r: int, c: int) -> bool:
+        """Checks if the range constraint is violated at the given row and column index."""
         return self.board[r, c] > 9
 
     def _sudoku_constraint_violated(self, r: int, c: int) -> bool:
+        """Checks if any of the sudoku constraints are violated at the given row and column index."""
         # The first 3 functions below call the underlying c function from cutils.c
         return (
             self._row_constraint_violated(r)
@@ -118,6 +125,7 @@ class BacktrackingSolver:
 
     @staticmethod
     def _proceed_to_next_cell(r: int, c: int) -> tuple[int, int]:
+        """Returns the co-ordinates of the next cell, given the current cell's co-ordinates."""
         c_next = c + 1 if c < 8 else 0
         r_next = r + 1 if c == 8 else r
 
@@ -125,12 +133,17 @@ class BacktrackingSolver:
 
     @staticmethod
     def _backtrack_to_prev_cell(r: int, c: int) -> tuple[int, int]:
+        """Returns the co-ordinates of the previous cell, given the current cell's co-ordinates."""
         c_prev = c - 1 if c > 0 else 8
         r_prev = r - 1 if c == 0 and r > 0 else r
 
         return r_prev, c_prev
 
     def _proceed_until_editable(self, r: int, c: int) -> tuple[int, int]:
+        """Returns the co-ordinates of the next editable cell, given the current cell's co-ordinates.
+
+        The next editable cell is given by the cell after the current cell that was 0 in the original unsolved board.
+        """
         r, c = self._proceed_to_next_cell(r, c)
 
         while not self._is_cell_editable(r, c):
@@ -139,6 +152,11 @@ class BacktrackingSolver:
         return r, c
 
     def _backtrack_until_editable(self, r: int, c: int) -> tuple[int, int]:
+        """Returns the co-ordinates of the previous editable cell, given the current cell's co-ordinates.
+
+        The previous editable cell is given by the cell before the current cell that was 0 in the original unsolved
+        board.
+        """
         r, c = self._backtrack_to_prev_cell(r, c)
 
         while not self._is_cell_editable(r, c):
