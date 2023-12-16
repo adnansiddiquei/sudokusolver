@@ -42,6 +42,7 @@ def cleanup(files_to_remove: list[str]):
 
 
 def test_valid_filepath_and_valid_board():
+    """Test that a valid filepath and a valid board is saved to the correct file."""
     # Save the board and asset the file exists
     save_board_to_txt(solved_board, f'{cwd}/test_output1.txt')
     assert os.path.exists(f'{cwd}/test_output1.txt')
@@ -57,6 +58,7 @@ def test_valid_filepath_and_valid_board():
 
 
 def test_valid_filepath_and_invalid_board():
+    """Test that a valid filepath and an invalid board raises the correct errors when trying to save."""
     # Invalid shape
     with pytest.raises(ValueError):
         save_board_to_txt(np.array([[1, 2, 3], [4, 5, 6]]), f'{cwd}/test_output1.txt')
@@ -69,6 +71,7 @@ def test_valid_filepath_and_invalid_board():
 
 
 def test_invalid_filepath():
+    """Test that an invalid filepath raises the correct errors when trying to save."""
     # Incorrect file extension
     with pytest.raises(ValueError):
         save_board_to_txt(solved_board, f'{cwd}/test_output1.csv')

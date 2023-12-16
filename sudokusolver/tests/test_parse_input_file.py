@@ -21,6 +21,7 @@ parsed_board = np.array(
 
 
 def test_valid_filepath_and_valid_board():
+    """Test that a valid filepath and a valid board parses into the correct board."""
     # Perfect board
     assert np.array_equal(
         parse_input_file(f'{cwd}/sample_inputs/valid_input1.txt'), parsed_board
@@ -53,6 +54,7 @@ def test_valid_filepath_and_valid_board():
 
 
 def test_valid_filepath_and_invalid_board():
+    """Test that a valid filepath and an invalid board raises the correct errors when it is parsed."""
     with pytest.raises(ValueError):
         # this one is missing a number at the end of a row
         parse_input_file(f'{cwd}/sample_inputs/invalid_input1.txt')
@@ -79,6 +81,7 @@ def test_valid_filepath_and_invalid_board():
 
 
 def test_invalid_filepath():
+    """Test that an invalid filepath raises the correct errors."""
     with pytest.raises(FileNotFoundError):
         parse_input_file(f'{cwd}/sample_inputs/does_not_exist.txt')
 
